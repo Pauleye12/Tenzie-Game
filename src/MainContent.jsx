@@ -62,6 +62,7 @@ function MainContent() {
 
     const Refresh = () => {
         setValue(RandomNumber());
+        setNoOfRolls(0); // you forgot to rest number of rolls on refresh
     };
 
     return (
