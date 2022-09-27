@@ -19,6 +19,9 @@ function RandomNumber() {
 
 function MainContent() {
     const [Value, setValue] = useState(RandomNumber());
+    const [NoOfRolls, setNoOfRolls] = useState(0);
+
+    // let TotalNumberOfRolls = 0;
 
     const regenerateNewArray = () => {
         setValue((value) => {
@@ -32,6 +35,10 @@ function MainContent() {
                 }
             });
         });
+        setNoOfRolls((prevState) => {
+            let newstate = prevState + 1;
+            return newstate;
+        });
     };
 
     const toggleIsHeld = (id) => {
@@ -42,10 +49,7 @@ function MainContent() {
 
     const [tenzies, setTenzies] = useState(false);
 
-    console.log(Value);
-
     useEffect(() => {
-        console.log("dice state changed");
         const firstNumber = Value[0].value;
         const sameNumber = Value.every((e) => e.value === firstNumber && e.isHeld === true);
 
@@ -64,12 +68,14 @@ function MainContent() {
         <div>
             <main className="wrapper">
                 <Header tenzies={tenzies} />
+                {!tenzies ? "" : <h3 className="NoOfRolls">Total number of rolls: {NoOfRolls}</h3>}
                 <RenderDie Value={Value} handleToggle={toggleIsHeld} tenzies={tenzies} />
                 <RollBtn
                     handleClick={regenerateNewArray}
                     tenzies={tenzies}
                     handleRefresh={Refresh}
                 />
+                {tenzies ? "" : <h3 className="NoOfRolls">current number of rolls: {NoOfRolls}</h3>}
             </main>
         </div>
     );
