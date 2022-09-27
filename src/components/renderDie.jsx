@@ -1,16 +1,12 @@
-import React, { useState } from "react";
 import Die from "./Die";
 
-function RenderDie(props) {
+export default function RenderDie({Value, handleToggle}) {
   
-
   return (
     <div className="dice-container">
-      {props.Value.map((e, index) => (
-        <Die key={index} value={e} handleclick={()=> props.handleToggle(e.id)} />
+      {Value.map((e, index) => (
+        <Die key={index} value={e} handleclick={()=> handleToggle(e.id)} />
       ))}
     </div>
   );
 }
-
-export default RenderDie;

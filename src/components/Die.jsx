@@ -1,14 +1,12 @@
-import React from "react";
 
-function Die(props) {
+export default function Die({handleclick, value:{isHeld, value}}) {
   return (
     <div
-      onClick={props.handleclick}
-      className={`die ${props.value.isHeld ? "dieisHeld" : " "}`}
+      onClick={handleclick}
+      className={`die ${isHeld ? "dieisHeld" : " "}`}
     >
-      <h1>{props.value.value}</h1>
+      <h1>{value}</h1>
     </div>
   );
 }
 
-export default Die;

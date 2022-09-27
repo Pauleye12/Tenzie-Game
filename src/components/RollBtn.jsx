@@ -1,17 +1,9 @@
-import React from 'react'
-
-function RollBtn(props) {
+export default function RollBtn({tenzies, handleRefresh, handleClick}) {
   return (
     <footer>
-      {props.tenzies ? (
-        <button className="roll-dice" onClick={props.handleRefresh}>
-          Reset Game
-        </button>
-      ) : (
-        <button className="roll-dice" onClick={props.handleClick}>Roll dice</button>
-      )}
+      <button className="roll-dice" onClick={tenzies ? handleRefresh : handleClick}>
+        {tenzies ? 'Reset Game' : 'Roll dice'}
+      </button>
     </footer>
   );
 }
-
-export default RollBtn
