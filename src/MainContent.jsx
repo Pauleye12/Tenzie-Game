@@ -18,15 +18,17 @@ function MainContent() {
       };
       newArr.push(object);
     }
-console.log('new game')
     return newArr;
   };
 
   const [Value, setValue] = useState(RandomNumber());
+  const [NoOfRolls, setNoOfRolls] = useState(0);
+
+  // let TotalNumberOfRolls = 0;
 
   const regenerateNewArray = () => {
     setValue((value) => {
-      return value.map((e, index) =>
+      return (value.map((e, index) =>
         e.isHeld
           ? e
           : (() => {
@@ -38,10 +40,17 @@ console.log('new game')
               };
               return object;
             })()
-      );
-    });
+      ))
+    })
+    setNoOfRolls((prevState) => {
+      let newstate = prevState + 1
+      return newstate
+    } );
   };
 
+  // const TotalNumberOfRolls = () => {
+  //   setNoOfRolls((prevState) => (newstate = prevState + 1));
+  // };
   const toggleIsHeld = (id) => {
     setValue((prevState) => {
       return prevState.map((e) => {
@@ -52,33 +61,47 @@ console.log('new game')
 
   const [tenzies, setTenzies] = useState(false);
 
-  console.log(Value);
-
   useEffect(() => {
-    console.log("dice state changed");
     const allHeld = Value.every((e) => e.isHeld === true);
     const firstNumber = Value[0].value;
     const sameNumber = Value.every((e) => e.value === firstNumber);
 
-    if (allHeld&&sameNumber) {
-      setTenzies(true)
-    }else{setTenzies(false)}
+    if (allHeld && sameNumber) {
+      setTenzies(true);
+    } else {
+      setTenzies(false);
+    }
   }, [Value]);
 
   const Refresh = () => {
     setValue(RandomNumber())
-}
+    setNoOfRolls(0)
+  };
 
   return (
     <div>
-       <main className="wrapper">
+      <main className="wrapper">
         <Header tenzies={tenzies} />
+        {!tenzies ? (
+          ""
+        ) : (
+          <h3 className="NoOfRolls">Total number of rolls: {NoOfRolls}</h3>
+        )}
         <RenderDie
           Value={Value}
           handleToggle={toggleIsHeld}
           tenzies={tenzies}
         />
-        <RollBtn handleClick={regenerateNewArray} tenzies={tenzies} handleRefresh={Refresh} />
+        <RollBtn
+          handleClick={regenerateNewArray}
+          tenzies={tenzies}
+          handleRefresh={Refresh}
+        />
+        {tenzies ? (
+          ""
+        ) : (
+          <h3 className="NoOfRolls">current number of rolls: {NoOfRolls}</h3>
+        )}
       </main>
     </div>
   );

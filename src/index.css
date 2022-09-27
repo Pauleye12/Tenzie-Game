@@ -50,15 +50,16 @@
 } */
 header {
   text-align: center;
-  width: 350px;
+  width: 100%;
 }
 header p {
   font-size: 20px;
 }
 .die {
   background-color: white;
-  height: 70px;
-  width: 70px;
+  max-height: 70px;
+  max-width: 70px;
+  padding: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,12 +71,12 @@ header p {
   background-color: #59e391;
 }
 .dice-container {
-  width: 500px;
+  max-width: 500px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 30px;
   /* border: 1px solid black; */
-  margin-top: 5px;
+  margin-top: 15px;
 }
 footer {
   margin-top: 40px;
@@ -87,10 +88,66 @@ a {
   border: none;
   border-radius: 7px;
   background-color: #5035ff;
-  color: white !important;
+  color: white;
   cursor: pointer;
 }
 button:active,
 a:active {
   box-shadow: inset 2px 3px 20px -3px rgba(0, 0, 0, 0.9);
 }
+.NoOfRolls {
+  margin: 10px 0;
+}
+
+/* Media queries */
+@media screen and (max-width:400px) {
+ .wrapper{
+  max-width: 350px;
+ } 
+ .dice-container{
+  gap: 10px;
+  width: 100%;
+ }
+ .die{
+  padding: 10px;
+ }
+}
+
+@media screen and (min-width:401px) and (max-width:420px) {
+ .wrapper{
+  max-width: 370px;
+ } 
+ .dice-container{
+  gap: 15px;
+  /* width: 100%; */
+ }
+ .die{
+  padding: 20px;
+ }
+}
+
+@media screen and (max-width: 920px) {
+  .app {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .homepage {
+    width: 100%;
+  }
+}
+
+/* @media screen and (max-width: 920px) {
+  .app {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .homepage {
+    width: 100%;
+  }
+} */
